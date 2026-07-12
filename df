@@ -1,0 +1,269 @@
+[1mdiff --git a/README.md b/README.md[m
+[1mindex f5664f0..aea48bf 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -4,17 +4,19 @@[m
+ [m
+ # Engineering Documentation Generator[m
+ [m
+[31m-> A software engineering tool that automates the generation of standardized Markdown documentation while preserving human creativity and decision-making.[m
+[32m+[m[32m> A modular command-line tool for assembling standardized engineering documents from reusable Markdown section templates.[m
+ [m
+ ---[m
+ [m
+ ## About[m
+ [m
+[31m-Engineering projects often begin by creating multiple documentation files before implementation can start.[m
+[32m+[m[32mEngineering projects often require documentation before implementation can begin.[m
+ [m
+[31m-Although every project has different objectives, much of this documentation process is repetitive.[m
+[32m+[m[32mAlthough every project has different objectives, many documentation tasks follow recurring structures. Rewriting these sections manually consumes time and can produce inconsistent results.[m
+ [m
+[31m-The Engineering Documentation Generator was created to automate repetitive documentation tasks while allowing engineers to focus on what truly requires human judgment: ideas, architecture, and technical decisions.[m
+[32m+[m[32mThe Engineering Documentation Generator addresses this problem by collecting project information and assembling documents from independent Markdown section templates.[m
+[32m+[m
+[32m+[m[32mThe objective is not to replace engineering judgment, but to automate repetitive formatting and documentation tasks while keeping the user in control of the final content.[m
+ [m
+ ---[m
+ [m
+[36m@@ -22,32 +24,87 @@[m [mThe Engineering Documentation Generator was created to automate repetitive docum[m
+ [m
+ > Automate repetitive work, not creative thinking.[m
+ [m
+[31m-The application assists developers by generating structured Markdown documents based on predefined templates while keeping the user in control of the final result through an interactive review process.[m
+[32m+[m[32mThe `templates` directory acts as a reusable section library for engineering documents.[m
+[32m+[m
+[32m+[m[32mEach document type is divided into mandatory core sections and selectable optional sections. The generator requests only the information required by the chosen sections and assembles them in a standardized order.[m
+ [m
+ ---[m
+ [m
+[31m-## Current Features[m
+[32m+[m[32m## Current Capabilities[m
+[32m+[m
+[32m+[m[32mThe current implementation supports:[m
+ [m
+[31m-- README generation[m
+[31m-- Technical Knowledge Document generation[m
+[31m-- Interactive document review before saving[m
+[31m-- Markdown template system[m
+[32m+[m[32m- Command-line project and document selection.[m
+[32m+[m[32m- Collection of README Header information.[m
+[32m+[m[32m- Collection of README About information.[m
+[32m+[m[32m- Modular Markdown section templates.[m
+[32m+[m[32m- Placeholder replacement using project configuration data.[m
+[32m+[m[32m- Assembly of multiple independent templates into one README preview.[m
+[32m+[m[32m- Separation of interface, configuration, template loading, and document generation responsibilities.[m
+ [m
+ ---[m
+ [m
+[32m+[m[32m## Current README Sections[m
+[32m+[m
+[32m+[m[32m### Implemented[m
+[32m+[m
+[32m+[m[32m- Header[m
+[32m+[m[32m- About[m
+[32m+[m
+[32m+[m[32m### Planned Core Sections[m
+[32m+[m
+[32m+[m[32m- Getting Started[m
+[32m+[m[32m- Project Status[m
+[32m+[m[32m- Author[m
+[32m+[m[32m- License[m
+[32m+[m
+[32m+[m[32m### Planned Optional Sections[m
+[32m+[m
+[32m+[m[32m- Features[m
+[32m+[m[32m- Project Structure[m
+[32m+[m[32m- Examples[m
+[32m+[m[32m- Documentation[m
+[32m+[m[32m- Roadmap[m
+[32m+[m[32m- Contributing[m
+[32m+[m
+[32m+[m[32mAdditional specialized sections will be considered in later versions.[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## Project Structure[m
+[32m+[m
+[32m+[m[32m```text[m
+[32m+[m[32mEngineering-Documentation-Generator/[m
+[32m+[m[32m├── assets/[m
+[32m+[m[32m├── docs/[m
+[32m+[m[32m├── src/[m
+[32m+[m[32m├── templates/[m
+[32m+[m[32m│   ├── readme/[m
+[32m+[m[32m│   │   ├── core/[m
+[32m+[m[32m│   │   └── optional/[m
+[32m+[m[32m│   └── technical_knowledge_document/[m
+[32m+[m[32m├── tests/[m
+[32m+[m[32m├── LICENSE[m
+[32m+[m[32m├── README.md[m
+[32m+[m[32m└── requirements.txt[m
+[32m+[m[32m```[m
+[32m+[m
+ ## Documentation[m
+ [m
+ - Project Requirements[m
+ - Architecture Design[m
+[31m-[m
+[31m----[m
+[32m+[m[32m- README Standard[m
+ [m
+ ## Project Status[m
+ [m
+[31m-🚧 Version 0.1 — Architecture completed.[m
+[32m+[m[32m🚧 Version 0.1 — Core README implementation in progress[m
+ [m
+[31m-Implementation begins after design approval.[m
+[32m+[m[32mThe architecture and documentation standards have been defined.[m
+ [m
+[31m----[m
+[32m+[m[32mThe generator currently assembles the Header and About sections from independent Markdown templates. The remaining core sections will be implemented incrementally before optional section selection is introduced.[m
+[32m+[m
+[32m+[m[32m## License[m
+[32m+[m
+[32m+[m[32mThis project is distributed under the terms defined in the LICENSE file.[m
+ [m
+ *"Good software begins with good engineering."*[m
+\ No newline at end of file[m
+[1mdiff --git a/docs/architecture-design.md b/docs/architecture-design.md[m
+[1mindex cf43b42..9acec02 100644[m
+[1m--- a/docs/architecture-design.md[m
+[1m+++ b/docs/architecture-design.md[m
+[36m@@ -45,9 +45,18 @@[m [mEngineering Documentation Generator[m
+         User Interface[m
+               │[m
+               ▼[m
+[32m+[m[32m       Document Selection[m
+[32m+[m[32m              │[m
+[32m+[m[32m              ▼[m
+[32m+[m[32m     Optional Section Selection[m
+[32m+[m[32m              │[m
+[32m+[m[32m              ▼[m
+         Input Collector[m
+               │[m
+               ▼[m
+[32m+[m[32m   Project Configuration Builder[m
+[32m+[m[32m              │[m
+[32m+[m[32m              ▼[m
+         Template Manager[m
+               │[m
+               ▼[m
+[36m@@ -58,24 +67,29 @@[m [mEngineering Documentation Generator[m
+         ┌─────┴─────┐[m
+         │           │[m
+         ▼           ▼[m
+[31m-   Regenerate   Save Document[m
+[32m+[m[32m   Revise Data   Approve[m
+         │           │[m
+[31m-        └─────┬─────┘[m
+[31m-              ▼[m
+[31m-         File Writer[m
+[32m+[m[32m        └─────┐     ▼[m
+[32m+[m[32m              │  File Writer[m
+[32m+[m[32m              │     │[m
+[32m+[m[32m              └─────┘[m
+  ```        [m
+ [m
+ ## Module Responsibilities[m
+ [m
+ ### User Interface[m
+ [m
+[31m-Responsible for displaying menus, guiding the user through the program, and presenting the available document generation options.[m
+[32m+[m[32mResponsible for presenting the available optional sections for the selected document type.[m
+[32m+[m
+[32m+[m[32mCore sections are included automatically and cannot be removed. Optional sections are included only when selected by the user.[m
+[32m+[m
+ [m
+ ---[m
+ [m
+ ### Input Collector[m
+ [m
+[31m-Responsible for collecting all the information required to generate a document.[m
+[32m+[m[32mResponsible for requesting only the information required by the selected document type and sections.[m
+[32m+[m
+ [m
+ Examples include:[m
+ [m
+[36m@@ -89,7 +103,7 @@[m [mExamples include:[m
+ [m
+ ### Template Manager[m
+ [m
+[31m-Responsible for selecting and loading the appropriate Markdown template based on the document type chosen by the user.[m
+[32m+[m[32mResponsible for locating and loading the independent Markdown templates required for the selected core and optional sections.[m
+ [m
+ The module should isolate template management from the rest of the application, making it easier to add new document types in future versions.[m
+ [m
+[36m@@ -97,7 +111,7 @@[m [mThe module should isolate template management from the rest of the application,[m
+ [m
+ ### Document Generator[m
+ [m
+[31m-Responsible for combining the user-provided information with the selected template to generate a complete Markdown document.[m
+[32m+[m[32mResponsible for assembling the selected section templates in the defined order and populating them with the project configuration data.[m
+ [m
+ This module contains the core business logic of the application.[m
+ [m
+[36m@@ -159,13 +173,15 @@[m [mIf the user requests modifications during the review stage, the updated informat[m
+ [m
+ ### 1. Modular Architecture[m
+ [m
+[32m+[m[32m### Modular Document Sections[m
+[32m+[m
+ **Decision**[m
+ [m
+[31m-The system is divided into independent modules, each with a single responsibility.[m
+[32m+[m[32mDocuments will be assembled from independent section templates rather than from a single fixed template.[m
+ [m
+ **Rationale**[m
+ [m
+[31m-Separating responsibilities improves maintainability, readability, testing, and future extensibility while reducing coupling between components.[m
+[32m+[m[32mA modular structure allows every generated document to preserve a standardized core while including only the optional sections relevant to the project. This reduces unnecessary questions, avoids irrelevant content, and supports future document types without redesigning the complete generation process.[m
+ [m
+ ---[m
+ [m
+[1mdiff --git a/docs/project-requirements.md b/docs/project-requirements.md[m
+[1mindex bdf2c58..a1a33a2 100644[m
+[1m--- a/docs/project-requirements.md[m
+[1m+++ b/docs/project-requirements.md[m
+[36m@@ -53,12 +53,13 @@[m [mThe long-term objective is to transform documentation from a repetitive task int[m
+ [m
+ Version 1.0 shall provide the ability to:[m
+ [m
+[31m-- Generate a standardized README template.[m
+[31m-- Generate documents using predefined templates stored within the application.[m
+[31m-- Generate a Technical Knowledge Document template.[m
+[31m-- Ask the user for the basic information required to populate each document.[m
+[31m-- Automatically generate Markdown files.[m
+[31m-- Save generated files in the selected directory.[m
+[32m+[m[32m- Generate a standardized README document.[m
+[32m+[m[32m- Include a predefined group of mandatory core sections in every generated README.[m
+[32m+[m[32m- Allow the user to select additional optional README sections before information is collected.[m
+[32m+[m[32m- Request only the information required by the selected sections.[m
+[32m+[m[32m- Assemble the final README from independent Markdown section templates.[m
+[32m+[m[32m- Display a preview of the generated document before saving.[m
+[32m+[m[32m- Allow the user to revise the provided information before finalizing the document.[m
+ [m
+ > Version 1.0 will use internal Markdown templates to generate all supported documents.  [m
+ Each template will remain editable for future versions.  [m
+[36m@@ -92,6 +93,7 @@[m [mThe first release will NOT include:[m
+ - Project management features.[m
+ - Plugin support.[m
+ - Automatic repository creation.[m
+[32m+[m[32m- Predefined project-type section packs.[m
+ [m
+ These features may be considered for future releases.[m
+ [m
+[36m@@ -125,6 +127,7 @@[m [mFuture versions may include:[m
+ - User-defined templates.[m
+ - Template customization.[m
+ - Cross-platform support.[m
+[32m+[m[32m- Predefined README section packs for project categories such as Computer Vision, Python libraries, research projects, and command-line tools.[m
+ [m
+ ---[m
+ [m
+[1mdiff --git a/src/.gitkeep b/src/.gitkeep[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/templates/.gitkeep b/templates/.gitkeep[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m

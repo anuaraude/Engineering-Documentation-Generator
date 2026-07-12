@@ -53,12 +53,13 @@ The long-term objective is to transform documentation from a repetitive task int
 
 Version 1.0 shall provide the ability to:
 
-- Generate a standardized README template.
-- Generate documents using predefined templates stored within the application.
-- Generate a Technical Knowledge Document template.
-- Ask the user for the basic information required to populate each document.
-- Automatically generate Markdown files.
-- Save generated files in the selected directory.
+- Generate a standardized README document.
+- Include a predefined group of mandatory core sections in every generated README.
+- Allow the user to select additional optional README sections before information is collected.
+- Request only the information required by the selected sections.
+- Assemble the final README from independent Markdown section templates.
+- Display a preview of the generated document before saving.
+- Allow the user to revise the provided information before finalizing the document.
 
 > Version 1.0 will use internal Markdown templates to generate all supported documents.  
 Each template will remain editable for future versions.  
@@ -92,6 +93,7 @@ The first release will NOT include:
 - Project management features.
 - Plugin support.
 - Automatic repository creation.
+- Predefined project-type section packs.
 
 These features may be considered for future releases.
 
@@ -125,6 +127,7 @@ Future versions may include:
 - User-defined templates.
 - Template customization.
 - Cross-platform support.
+- Predefined README section packs for project categories such as Computer Vision, Python libraries, research projects, and command-line tools.
 
 ---
 

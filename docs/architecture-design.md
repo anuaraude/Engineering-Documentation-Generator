@@ -45,7 +45,16 @@ Engineering Documentation Generator
         User Interface
               │
               ▼
+       Document Selection
+              │
+              ▼
+     Optional Section Selection
+              │
+              ▼
         Input Collector
+              │
+              ▼
+   Project Configuration Builder
               │
               ▼
         Template Manager
@@ -58,24 +67,29 @@ Engineering Documentation Generator
         ┌─────┴─────┐
         │           │
         ▼           ▼
-   Regenerate   Save Document
+   Revise Data   Approve
         │           │
-        └─────┬─────┘
-              ▼
-         File Writer
+        └─────┐     ▼
+              │  File Writer
+              │     │
+              └─────┘
  ```        
 
 ## Module Responsibilities
 
 ### User Interface
 
-Responsible for displaying menus, guiding the user through the program, and presenting the available document generation options.
+Responsible for presenting the available optional sections for the selected document type.
+
+Core sections are included automatically and cannot be removed. Optional sections are included only when selected by the user.
+
 
 ---
 
 ### Input Collector
 
-Responsible for collecting all the information required to generate a document.
+Responsible for requesting only the information required by the selected document type and sections.
+
 
 Examples include:
 
@@ -89,7 +103,7 @@ Examples include:
 
 ### Template Manager
 
-Responsible for selecting and loading the appropriate Markdown template based on the document type chosen by the user.
+Responsible for locating and loading the independent Markdown templates required for the selected core and optional sections.
 
 The module should isolate template management from the rest of the application, making it easier to add new document types in future versions.
 
@@ -97,7 +111,7 @@ The module should isolate template management from the rest of the application, 
 
 ### Document Generator
 
-Responsible for combining the user-provided information with the selected template to generate a complete Markdown document.
+Responsible for assembling the selected section templates in the defined order and populating them with the project configuration data.
 
 This module contains the core business logic of the application.
 
@@ -159,13 +173,15 @@ If the user requests modifications during the review stage, the updated informat
 
 ### 1. Modular Architecture
 
+### Modular Document Sections
+
 **Decision**
 
-The system is divided into independent modules, each with a single responsibility.
+Documents will be assembled from independent section templates rather than from a single fixed template.
 
 **Rationale**
 
-Separating responsibilities improves maintainability, readability, testing, and future extensibility while reducing coupling between components.
+A modular structure allows every generated document to preserve a standardized core while including only the optional sections relevant to the project. This reduces unnecessary questions, avoids irrelevant content, and supports future document types without redesigning the complete generation process.
 
 ---
 

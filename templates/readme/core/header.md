@@ -1,0 +1,5 @@
+# {project_name}
+
+> {short_description}
+
+---
