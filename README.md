@@ -35,11 +35,10 @@ Each document type is divided into mandatory core sections and selectable option
 The current implementation supports:
 
 - Command-line project and document selection.
-- Collection of README Header information.
-- Collection of README About information.
+- Collection of all mandatory README Core information.
 - Modular Markdown section templates.
 - Placeholder replacement using project configuration data.
-- Assembly of multiple independent templates into one README preview.
+- Assembly of six independent Core templates into one README preview.
 - Separation of interface, configuration, template loading, and document generation responsibilities.
 
 ---
@@ -50,9 +49,6 @@ The current implementation supports:
 
 - Header
 - About
-
-### Planned Core Sections
-
 - Getting Started
 - Project Status
 - Author
@@ -82,7 +78,11 @@ Engineering-Documentation-Generator/
 │   ├── readme/
 │   │   ├── core/
 │   │   │   ├── header.md
-│   │   │   └── about.md
+│   │   │   ├── about.md
+│   │   │   ├── getting_started.md
+│   │   │   ├── project_status.md
+│   │   │   ├── author.md
+│   │   │   └── license.md
 │   │   └── optional/
 │   └── technical_knowledge_document/
 ├── tests/
@@ -99,11 +99,11 @@ Engineering-Documentation-Generator/
 
 ## Project Status
 
-🚧 Version 0.1 — Core README implementation in progress
+🚧 **Version 0.4 — README Core completed**
 
-The architecture and documentation standards have been defined.
+The generator now assembles all six mandatory README Core sections from independent Markdown templates.
 
-The generator currently assembles the Header and About sections from independent Markdown templates. The remaining core sections will be implemented incrementally before optional section selection is introduced.
+Optional section selection, interactive review, and file output remain under development.
 
 ## License
 
