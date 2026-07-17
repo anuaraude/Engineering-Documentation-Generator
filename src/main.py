@@ -1,5 +1,11 @@
 from configuration import create_readme_configuration
 from document_generator import generate_readme
+from file_writer import save_readme
+from review_manager import (
+    collect_destination_folder,
+    confirm_overwrite,
+    confirm_save,
+)
 from user_interface import (
     choose_document_type,
     collect_about_information,
@@ -65,9 +71,56 @@ def main():
             print("----------------")
             print(markdown)
 
+            if confirm_save():
+                destination_folder = collect_destination_folder()
+
+                try:
+                    saved_path = save_readme(
+                        markdown=markdown,
+                        destination_folder=destination_folder,
+                    )
+
+                except FileExistsError:
+                    if confirm_overwrite():
+                        try:
+                            saved_path = save_readme(
+                                markdown=markdown,
+                                destination_folder=destination_folder,
+                                overwrite=True,
+                            )
+
+                        except OSError as error:
+                            print(
+                                f"Could not save the document: {error}"
+                            )
+
+                        else:
+                            print(
+                                "README saved successfully at: "
+                                f"{saved_path}"
+                            )
+
+                    else:
+                        print("Document was not saved.")
+
+                except OSError as error:
+                    print(f"Could not save the document: {error}")
+
+                else:
+                    print(
+                        "README saved successfully at: "
+                        f"{saved_path}"
+                    )
+
+            else:
+                print("Document was not saved.")
+
         elif document_type == "2":
             print()
-            print("Technical Knowledge Document is not implemented yet.")
+            print(
+                "Technical Knowledge Document "
+                "is not implemented yet."
+            )
 
         else:
             print("Invalid document type.")

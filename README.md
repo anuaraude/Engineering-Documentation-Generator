@@ -40,6 +40,9 @@ The current implementation supports:
 - Placeholder replacement using project configuration data.
 - Assembly of six independent Core templates into one README preview.
 - Separation of interface, configuration, template loading, and document generation responsibilities.
+- Interactive preview and save confirmation.
+- Saving generated README files to a user-selected folder.
+- Overwrite protection for existing README files.
 
 ---
 
@@ -103,7 +106,7 @@ Engineering-Documentation-Generator/
 
 The generator now assembles all six mandatory README Core sections from independent Markdown templates.
 
-Optional section selection, interactive review, and file output remain under development.
+Basic input validation, automated tests, repository documentation improvements, and optional section selection remain under development.
 
 ## License
 

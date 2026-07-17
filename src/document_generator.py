@@ -69,4 +69,9 @@ def generate_readme(readme_configuration: dict) -> str:
         license_markdown,
     ]
 
-    return "\n\n".join(core_sections)
+    clean_sections = [
+        section.strip()
+        for section in core_sections
+    ]
+
+    return "\n\n".join(clean_sections) + "\n"
