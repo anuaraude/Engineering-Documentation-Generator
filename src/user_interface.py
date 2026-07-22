@@ -1,7 +1,7 @@
 def show_main_menu():
     print("=========================================")
     print("Engineering Documentation Generator")
-    print("Version 0.4")
+    print("Version 0.5")
     print("=========================================")
     print()
     print("Welcome!")

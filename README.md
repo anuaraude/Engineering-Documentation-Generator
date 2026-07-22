@@ -222,13 +222,13 @@ Engineering-Documentation-Generator/
 
 ## Project Status
 
-🚧 **Version 0.4 — README workflow stabilized**
+✅ **Version 0.5 — Usable and verified README generation workflow**
 
 The application can collect validated project information, assemble all six mandatory README Core sections, display a preview, and save the generated document to a user-selected folder.
 
-An automated pytest suite now verifies README generation, configuration-template compatibility, file creation, overwrite protection, newline handling, and UTF-8 output.
+An automated pytest suite verifies README generation, configuration-template compatibility, file creation, overwrite protection, newline handling, and UTF-8 output.
 
-Optional README section selection and Technical Knowledge Document support remain under development.
+Optional README section selection and Technical Knowledge Document support are planned for future versions.
 
 ## License
 
