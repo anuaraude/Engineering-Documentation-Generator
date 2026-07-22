@@ -1,12 +1,12 @@
-from configuration import create_readme_configuration
-from document_generator import generate_readme
-from file_writer import save_readme
-from review_manager import (
+from .configuration import create_readme_configuration
+from .document_generator import generate_readme
+from .file_writer import save_readme
+from .review_manager import (
     collect_destination_folder,
     confirm_overwrite,
     confirm_save,
 )
-from user_interface import (
+from .user_interface import (
     choose_document_type,
     collect_about_information,
     collect_author_information,

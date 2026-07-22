@@ -51,12 +51,32 @@ cd Engineering-Documentation-Generator
 ### Run the Application
 
 ```bash
-python src/main.py
+python -m src.main
 ```
 
 The application will guide the user through document selection, project information collection, README preview, and file saving.
 
 By default, generated documents are saved as `README.md` inside the `output` directory. A different destination folder can be selected during execution.
+
+---
+
+## Development Setup
+
+Install the development dependencies:
+
+```bash
+python -m pip install -r requirements-dev.txt
+```
+
+The application has no third-party runtime dependencies. Development tools such as `pytest` are maintained separately in `requirements-dev.txt`.
+
+### Run the Test Suite
+
+```bash
+python -m pytest tests -v
+```
+
+The current automated suite covers README generation, configuration-template compatibility, file creation, overwrite protection, final-newline handling, and UTF-8 output.
 
 ---
 
@@ -69,7 +89,9 @@ The current implementation supports:
 - Collection of all mandatory README Core information.
 - Modular Markdown section templates.
 - Placeholder replacement using project configuration data.
+- Detection of missing required configuration values and unresolved template placeholders.
 - Assembly of six independent Core templates into one README document.
+- Automated pytest tests for README generation and file output.
 - Interactive Markdown preview and save confirmation.
 - Selection and automatic creation of the destination folder.
 - Saving the generated document as `README.md`.
@@ -181,9 +203,12 @@ Engineering-Documentation-Generator/
 │   │   └── optional/
 │   └── technical_knowledge_document/
 ├── tests/
+│   ├── test_document_generator.py
+│   └── test_file_writer.py
 ├── .gitignore
 ├── LICENSE
 ├── README.md
+├── requirements-dev.txt
 └── requirements.txt
 ```
 
@@ -197,11 +222,13 @@ Engineering-Documentation-Generator/
 
 ## Project Status
 
-🚧 **Version 0.4 — README generation workflow completed**
+🚧 **Version 0.4 — README workflow stabilized**
 
-The application can now collect validated project information, assemble all six mandatory README Core sections, display a preview, and save the generated document to a user-selected folder.
+The application can collect validated project information, assemble all six mandatory README Core sections, display a preview, and save the generated document to a user-selected folder.
 
-Automated tests, optional README section selection, and Technical Knowledge Document support remain under development.
+An automated pytest suite now verifies README generation, configuration-template compatibility, file creation, overwrite protection, newline handling, and UTF-8 output.
+
+Optional README section selection and Technical Knowledge Document support remain under development.
 
 ## License
 

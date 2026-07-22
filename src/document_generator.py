@@ -1,4 +1,4 @@
-from template_manager import load_template
+from .template_manager import load_template
 
 
 def generate_readme(readme_configuration: dict) -> str:
