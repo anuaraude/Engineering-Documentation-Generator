@@ -1,8 +1,11 @@
+from .readme_contract import validate_readme_configuration
 from .template_manager import load_template
 
 
 def generate_readme(readme_configuration: dict) -> str:
     """Generate a README document from modular templates."""
+
+    validate_readme_configuration(readme_configuration)
 
     # Load core templates
     header_template = load_template("readme/core/header.md")
