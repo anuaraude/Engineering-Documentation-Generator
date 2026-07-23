@@ -28,7 +28,7 @@ The objective is not to replace engineering judgment, but to automate repetitive
 
 The `templates` directory acts as a reusable section library for engineering documents.
 
-Each document type is divided into mandatory core sections and selectable optional sections. The generator requests only the information required by the chosen sections and assembles them in a standardized order.
+The current release focuses on the mandatory README Core sections. The generator requests the required project information and assembles the sections in a standardized order from reusable Markdown templates.
 
 ---
 
@@ -72,6 +72,8 @@ python -m pip install -r requirements-dev.txt
 
 The application has no third-party runtime dependencies. Development tools such as `pytest` are maintained separately in `requirements-dev.txt`.
 
+The automated suite contains 29 tests covering README generation, explicit Core configuration validation, configuration-template compatibility, file creation, overwrite protection, final-newline handling, and UTF-8 output.
+
 ### Run the Test Suite
 
 ```bash
@@ -91,9 +93,12 @@ The current implementation supports:
 - Collection of all mandatory README Core information.
 - Modular Markdown section templates.
 - Placeholder replacement using project configuration data.
-- Detection of missing required configuration values and unresolved template placeholders.
+- Explicit validation of all required README Core configuration fields.
+- Domain-specific reporting of all missing fields in a single error.
+- Automated verification through 29 pytest tests.
+- Continuous integration with GitHub Actions on pushes and pull requests targeting `main`.
 - Assembly of six independent Core templates into one README document.
-- Automated pytest tests for README generation and file output.
+- Separation of configuration validation into an independent contract module.
 - Interactive Markdown preview and save confirmation.
 - Selection and automatic creation of the destination folder.
 - Saving the generated document as `README.md`.
@@ -133,9 +138,12 @@ main.py
 ├── user_interface.py
 ├── configuration.py
 ├── document_generator.py
-│   └── template_manager.py
 ├── review_manager.py
 └── file_writer.py
+
+document_generator.py
+├── uses readme_contract.py
+└── uses template_manager.py
 ```
 
 ### Module Responsibilities
@@ -144,9 +152,10 @@ main.py
 - `main.py`: coordinates the complete application workflow.
 - `configuration.py`: organizes the collected information into structured document configuration data.
 - `template_manager.py`: locates and loads the required Markdown templates.
-- `document_generator.py`: replaces placeholders and assembles the final Markdown document.
+- `document_generator.py`: validates the configuration contract, replaces placeholders, and assembles the final Markdown document.
 - `review_manager.py`: handles save decisions, destination selection, and overwrite confirmation.
 - `file_writer.py`: creates destination folders and writes the generated `README.md` file.
+- `readme_contract.py`: defines the required README Core fields, validates configuration structure, and reports all missing fields through a domain-specific exception.
 
 This separation keeps each module focused on one primary responsibility and makes the application easier to maintain, test, and extend.
 
@@ -163,16 +172,16 @@ This separation keeps each module focused on one primary responsibility and make
 - Author
 - License
 
-### Planned Optional Sections
+### Deferred Scope
 
-- Features
-- Project Structure
-- Examples
-- Documentation
-- Roadmap
-- Contributing
+The following capabilities were intentionally excluded from the final version 0.6 scope:
 
-Additional specialized sections will be considered in later versions.
+- Optional README sections.
+- Technical Knowledge Document generation.
+- Graphical interfaces.
+- Python package distribution.
+
+These capabilities are not part of the active roadmap and may be reconsidered only if a concrete user need emerges.
 
 ---
 
@@ -180,33 +189,37 @@ Additional specialized sections will be considered in later versions.
 
 ```text
 Engineering-Documentation-Generator/
+├── .github/
+│   └── workflows/
+│       └── tests.yml
 ├── assets/
 ├── docs/
 │   ├── architecture-design.md
 │   ├── project-requirements.md
 │   └── readme-standard.md
 ├── src/
+│   ├── __init__.py
 │   ├── configuration.py
 │   ├── document_generator.py
 │   ├── file_writer.py
 │   ├── main.py
+│   ├── readme_contract.py
 │   ├── review_manager.py
 │   ├── template_manager.py
 │   └── user_interface.py
 ├── templates/
-│   ├── readme/
-│   │   ├── core/
-│   │   │   ├── about.md
-│   │   │   ├── author.md
-│   │   │   ├── getting_started.md
-│   │   │   ├── header.md
-│   │   │   ├── license.md
-│   │   │   └── project_status.md
-│   │   └── optional/
-│   └── technical_knowledge_document/
+│   └── readme/
+│       └── core/
+│           ├── about.md
+│           ├── author.md
+│           ├── getting_started.md
+│           ├── header.md
+│           ├── license.md
+│           └── project_status.md
 ├── tests/
 │   ├── test_document_generator.py
-│   └── test_file_writer.py
+│   ├── test_file_writer.py
+│   └── test_readme_contract.py
 ├── .gitignore
 ├── LICENSE
 ├── README.md
@@ -214,7 +227,7 @@ Engineering-Documentation-Generator/
 └── requirements.txt
 ```
 
-> Some empty directories represent the planned project structure and may not yet contain tracked files.
+---
 
 ## Documentation
 
@@ -224,13 +237,15 @@ Engineering-Documentation-Generator/
 
 ## Project Status
 
-✅ **Version 0.5 — Usable and verified README generation workflow**
+✅ **Version 0.6 — Final engineering release**
 
-The application can collect validated project information, assemble all six mandatory README Core sections, display a preview, and save the generated document to a user-selected folder.
+The application collects validated project information, assembles all six mandatory README Core sections, displays a preview, and safely saves the generated document to a user-selected folder.
 
-An automated pytest suite verifies README generation, configuration-template compatibility, file creation, overwrite protection, newline handling, and UTF-8 output.
+The final release includes explicit README Core configuration validation, domain-specific reporting of all missing required fields, 29 automated tests, and continuous integration through GitHub Actions.
 
-Optional README section selection and Technical Knowledge Document support are planned for future versions.
+This repository is complete as a focused software-engineering portfolio project. Active feature development is frozen.
+
+Optional README sections, Technical Knowledge Document generation, graphical interfaces, and package distribution were intentionally deferred. They may be reconsidered only if a concrete user need emerges.
 
 ## License
 

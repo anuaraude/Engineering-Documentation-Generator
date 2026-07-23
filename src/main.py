@@ -118,8 +118,8 @@ def main():
         elif document_type == "2":
             print()
             print(
-                "Technical Knowledge Document "
-                "is not implemented yet."
+                "Technical Knowledge Document generation "
+                "is outside the final version 0.6 scope."
             )
 
         else:
