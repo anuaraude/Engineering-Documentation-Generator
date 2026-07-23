@@ -2,7 +2,13 @@
 
 **Project:** Engineering Documentation Generator  
 **Version:** 0.1  
-**Status:** Draft
+**Status:** Historical reference
+
+> **Version 0.6 status note:** This document preserves the original
+> architectural exploration. The final implementation supports README
+> Core generation as its only document type. Optional README sections
+> and Technical Knowledge Document generation were intentionally
+> deferred.
 
 ---
 
@@ -225,10 +231,11 @@ A CLI minimizes unnecessary complexity, allowing development efforts to focus on
 
 **Decision**
 
-Version 1.0 will support only two document types:
+Version 1.0 was originally planned to support two document types:
 
 - README
-- Technical Knowledge Document
+- Technical Knowledge Document — part of the original version 1.0
+  vision; deferred from the implemented version 0.6 scope.
 
 **Rationale**
 

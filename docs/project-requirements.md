@@ -6,7 +6,13 @@
 
 **Version:** 0.1
 
-**Status:** Draft
+**Status:** Historical reference
+
+> **Version 0.6 status note:** This document preserves the original
+> requirements envisioned for version 1.0. Version 0.6 represents the
+> final currently implemented scope. Uncompleted version 1.0
+> requirements are retained for traceability and are not part of the
+> active development roadmap.
 
 ---
 

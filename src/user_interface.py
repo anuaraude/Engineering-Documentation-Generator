@@ -1,7 +1,7 @@
 def show_main_menu():
     print("=========================================")
     print("Engineering Documentation Generator")
-    print("Version 0.5")
+    print("Version 0.6")
     print("=========================================")
     print()
     print("Welcome!")
@@ -24,7 +24,7 @@ def choose_document_type() -> str:
     print("Select document type")
     print("--------------------")
     print("1. README")
-    print("2. Technical Knowledge Document")
+    print("2. Technical Knowledge Document (deferred)")
     print()
 
     return ask_valid_option(
