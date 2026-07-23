@@ -2,6 +2,7 @@ import pytest
 
 from src.configuration import create_readme_configuration
 from src.document_generator import generate_readme
+from src.readme_contract import MissingCoreFieldsError
 
 
 def build_test_configuration() -> dict:
@@ -74,12 +75,16 @@ def test_generate_readme_replaces_all_expected_placeholders() -> None:
         assert f"{{{placeholder}}}" not in markdown
 
 
-def test_generate_readme_raises_key_error_for_missing_required_value() -> None:
+def test_generate_readme_rejects_missing_required_value() -> None:
     configuration = build_test_configuration()
     del configuration["header"]["project_name"]
 
-    with pytest.raises(KeyError, match="project_name"):
+    with pytest.raises(MissingCoreFieldsError) as exc_info:
         generate_readme(configuration)
+
+    assert exc_info.value.missing_fields == (
+        "header.project_name",
+    )
 
 
 def test_generate_readme_preserves_core_section_order() -> None:
