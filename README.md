@@ -4,6 +4,8 @@
 
 # Engineering Documentation Generator
 
+[![Tests](https://github.com/anuaraude/Engineering-Documentation-Generator/actions/workflows/tests.yml/badge.svg)](https://github.com/anuaraude/Engineering-Documentation-Generator/actions/workflows/tests.yml)
+
 > A modular command-line tool for assembling standardized engineering documents from reusable Markdown section templates.
 
 ---
